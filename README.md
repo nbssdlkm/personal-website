@@ -5,7 +5,9 @@ Astro 纯静态站，Ex Libris 设计系统（来自 [FicForge](https://github.c
 
 ## 日常操作（不碰终端的编辑入口）
 
-**在 GitHub 网页上直接改，保存后 ≤5 分钟自动上线**（MiniPC cron 拉取构建）：
+**首选：站点后台 https://nbssdlkm.cn/admin/** （Sveltia CMS）——发帖子、改关于页、管项目清单都是表单+富文本，保存即提交到 GitHub，≤5 分钟自动上线。登录方式：点「Sign In Using Access Token」，贴一个 GitHub PAT（对话框里有生成链接，权限已预选；只需给 personal-website 仓库的 Contents 读写）。
+
+**备选：GitHub 网页直接改文件**，同样保存后 ≤5 分钟自动上线（MiniPC cron 拉取构建）：
 
 - **发帖子**：仓库页面进 `src/content/posts/` → Add file，文件开头写：
   ```
