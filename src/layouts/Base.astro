@@ -1,0 +1,119 @@
+---
+import '../styles/exlibris.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = 'Air 的个人站', description = '英专转码 · 游戏公司做 AI · 开源作者' } = Astro.props;
+
+const nav = [
+  { href: '/', label: '首页' },
+  { href: '/projects', label: '作品集' },
+  { href: '/posts', label: '帖子' },
+  { href: '/about', label: '关于' },
+  { href: '/tools', label: '工具' },
+];
+
+const path = Astro.url.pathname;
+const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="alternate" type="application/rss+xml" title="Air 的帖子" href="/rss.xml" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/">Air<span class="dot">.</span></a>
+      <nav>
+        {nav.map((item) => (
+          <a href={item.href} class:list={{ on: isActive(item.href) }}>{item.label}</a>
+        ))}
+      </nav>
+    </header>
+    <main><slot /></main>
+    <footer>
+      <span>© 2026 Air · 设计系统来自 <a href="https://github.com/nbssdlkm/FicForge">FicForge</a></span>
+      <span class="exmark">Ex Libris</span>
+    </footer>
+  </body>
+</html>
+
+<style>
+  header,
+  main,
+  footer {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+  }
+
+  header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding-top: 1.75rem;
+    padding-bottom: 1rem;
+  }
+
+  .brand {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.35rem;
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .brand .dot {
+    color: var(--color-gold);
+  }
+
+  nav a {
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    color: var(--color-ink-muted);
+    text-decoration: none;
+    margin-left: 1.1rem;
+  }
+
+  nav a:hover {
+    color: var(--color-accent);
+  }
+
+  nav a.on {
+    color: var(--color-accent);
+    border-bottom: 2px solid var(--color-gold);
+    padding-bottom: 2px;
+  }
+
+  main {
+    min-height: 60vh;
+    padding-bottom: 3rem;
+  }
+
+  footer {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid var(--color-rule);
+    padding-top: 0.9rem;
+    padding-bottom: 2rem;
+    font-family: var(--font-ui);
+    font-size: 0.78rem;
+    color: var(--color-ink-faint);
+  }
+
+  footer a {
+    color: inherit;
+  }
+
+  .exmark {
+    color: var(--color-gold);
+  }
+</style>

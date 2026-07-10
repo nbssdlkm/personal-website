@@ -1,0 +1,50 @@
+---
+import Base from '../../layouts/Base.astro';
+
+// 自动扫描本目录下的工具页；每个工具在 frontmatter 里 export title/description 即被收录
+const mods = import.meta.glob('./*.astro', { eager: true });
+const tools = Object.entries(mods)
+  .filter(([path]) => !path.endsWith('index.astro'))
+  .map(([path, mod]: [string, any]) => ({
+    href: '/tools/' + path.replace('./', '').replace('.astro', '') + '/',
+    title: mod.title ?? path,
+    description: mod.description ?? '',
+  }));
+---
+
+<Base title="工具 · Air">
+  <h1>小工具</h1>
+  <p class="sub">全部在你的浏览器里运行，数据不上传、不离开你的设备。</p>
+  {tools.length === 0 ? (
+    <p class="empty">工具陆续上线中。</p>
+  ) : (
+    <div class="grid">
+      {tools.map((t) => (
+        <a class="card" href={t.href}>
+          <h3>{t.title}</h3>
+          <p>{t.description}</p>
+        </a>
+      ))}
+    </div>
+  )}
+</Base>
+
+<style>
+  h1 {
+    font-size: 1.6rem;
+    margin: 2rem 0 0.5rem;
+  }
+
+  .empty {
+    color: var(--color-ink-faint);
+    font-family: var(--font-ui);
+    font-size: 0.9rem;
+    margin-top: 2rem;
+  }
+
+  .grid {
+    display: grid;
+    gap: 0.9rem;
+    margin-top: 1.5rem;
+  }
+</style>

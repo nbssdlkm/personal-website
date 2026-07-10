@@ -1,0 +1,181 @@
+/* Ex Libris design tokens — 与 FicForge src-ui/src/App.css 的 :root 保持同名同值 */
+:root {
+  --color-bg: #F3EFE2;
+  --color-text: #1A2E20;
+  --color-ink-muted: #4A5A4F;
+  --color-ink-faint: #8B9A8F;
+  --color-accent: #576148;
+  --color-drawer: #47594E;
+  --color-gold: #C99A38;
+  --color-gold-bright: #F0CC60;
+  --color-inv-text: #FBF5E1;
+  --color-rule: rgba(26, 46, 32, 0.22);
+  --color-rule-soft: rgba(26, 46, 32, 0.08);
+  --color-success: #386B45;
+  --color-warning: #B5762B;
+  --color-error: #8B2D1F;
+  --color-info: #2E4E7E;
+
+  --font-ui: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-reading: "Source Serif 4", Charter, Georgia, "Noto Serif CJK SC", "Source Han Serif SC", "PingFang SC", SimSun, serif;
+  --font-display: "EB Garamond", "Source Serif 4", Charter, Georgia, "Noto Serif CJK SC", "Source Han Serif SC", serif;
+  --font-mono: "JetBrains Mono", "Fira Code", "SF Mono", Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-reading);
+  line-height: 1.7;
+}
+
+a {
+  color: var(--color-accent);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+/* 小节标签：短文字 + 一条金分隔线 */
+.label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  color: var(--color-ink-faint);
+}
+
+.label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--color-rule);
+}
+
+/* 帖子列表：日期 + 标题一行 */
+.postlist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.postlist li {
+  display: flex;
+  gap: 1rem;
+  align-items: baseline;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--color-rule-soft);
+}
+
+.postlist li:last-child {
+  border-bottom: none;
+}
+
+.postlist time {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-ink-faint);
+  white-space: nowrap;
+}
+
+.postlist a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.postlist a:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+/* 项目卡 */
+.card {
+  display: block;
+  border: 1px solid var(--color-rule);
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.card:hover {
+  border-color: var(--color-accent);
+}
+
+.card-hero {
+  background: var(--color-drawer);
+  border: none;
+  border-top: 2px solid var(--color-gold-bright);
+  border-radius: 0 0 6px 6px;
+  color: var(--color-inv-text);
+}
+
+.card-hero:hover {
+  border-top-color: var(--color-gold);
+}
+
+.card h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
+.card p {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  color: var(--color-ink-muted);
+}
+
+.card-hero p {
+  color: var(--color-inv-text);
+  opacity: 0.85;
+}
+
+.card-hero .meta {
+  margin-top: 0.9rem;
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  color: var(--color-gold-bright);
+}
+
+/* 按钮 */
+.btn {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  padding: 0.55rem 1.3rem;
+  border-radius: 4px;
+  border: 1px solid var(--color-rule);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.btn:hover {
+  border-color: var(--color-accent);
+}
+
+.btn.solid {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-inv-text);
+}
+
+.sub {
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  color: var(--color-ink-muted);
+}

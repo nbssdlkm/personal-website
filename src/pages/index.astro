@@ -1,0 +1,74 @@
+---
+import Base from '../layouts/Base.astro';
+import { projects } from '../data/projects';
+import { getCollection } from 'astro:content';
+
+const featured = projects.filter((p) => p.featured);
+const posts = (await getCollection('posts'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+const fmt = (d: Date) => d.toISOString().slice(0, 10);
+---
+
+<Base>
+  <section class="hero">
+    <h1>英专出身，<br />现在用 AI 写代码。</h1>
+    <p class="sub">游戏公司做 AI · 开源作者 · 文科转码进行中</p>
+    <div class="cta">
+      <a class="btn solid" href="/projects">看作品</a>
+      <a class="btn" href="https://github.com/nbssdlkm">GitHub ↗</a>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="label">精选项目</h2>
+    <div class="featured">
+      {featured.map((p, i) => (
+        <a class:list={['card', { 'card-hero': i === 0 }]} href={p.url}>
+          <h3>{p.name}</h3>
+          <p>{p.tagline}</p>
+          {i === 0 && <div class="meta">★ 开源仓库 · 持续维护中</div>}
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section>
+    <h2 class="label">最近帖子</h2>
+    <ul class="postlist">
+      {posts.map((p) => (
+        <li>
+          <time datetime={p.data.date.toISOString()}>{fmt(p.data.date)}</time>
+          <a href={`/posts/${p.id}/`}>{p.data.title}</a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    margin: 3rem 0 3.5rem;
+  }
+
+  .hero h1 {
+    font-size: 2.1rem;
+    margin: 0 0 0.75rem;
+  }
+
+  .cta {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.4rem;
+  }
+
+  section + section {
+    margin-top: 2.5rem;
+  }
+
+  .featured {
+    display: grid;
+    gap: 0.9rem;
+    margin-top: 1rem;
+  }
+</style>
