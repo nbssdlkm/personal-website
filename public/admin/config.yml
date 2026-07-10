@@ -1,0 +1,48 @@
+backend:
+  name: github
+  repo: nbssdlkm/personal-website
+  branch: main
+
+site_url: https://nbssdlkm.cn
+media_folder: public/images
+public_folder: /images
+
+collections:
+  - name: posts
+    label: 帖子
+    folder: src/content/posts
+    create: true
+    delete: true
+    extension: md
+    format: frontmatter
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    summary: '{{title}}'
+    sortable_fields: [date, title]
+    fields:
+      - { label: 标题, name: title, widget: string }
+      - { label: 日期, name: date, widget: datetime, format: 'YYYY-MM-DD', time_format: false }
+      - { label: 小红书原帖链接（可选）, name: source, widget: string, required: false }
+      - { label: 标签（可选）, name: tags, widget: list, required: false }
+      - { label: 正文, name: body, widget: markdown }
+
+  - name: site
+    label: 站点内容
+    files:
+      - name: about
+        label: 关于页
+        file: src/data/about.md
+        fields:
+          - { label: 正文, name: body, widget: markdown }
+      - name: projects
+        label: 项目清单
+        file: src/data/projects.json
+        fields:
+          - label: 项目
+            name: projects
+            widget: list
+            summary: '{{fields.name}}'
+            fields:
+              - { label: 名称, name: name, widget: string }
+              - { label: 一句话简介, name: tagline, widget: string }
+              - { label: 链接, name: url, widget: string }
+              - { label: 上首页精选, name: featured, widget: boolean, default: false, required: false }

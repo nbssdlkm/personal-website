@@ -4,12 +4,14 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "node -e \"require('fs').copyFileSync('node_modules/@sveltia/cms/dist/sveltia-cms.js','public/admin/sveltia-cms.js')\"",
     "build": "astro build",
     "preview": "astro preview"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.12",
     "@fontsource/eb-garamond": "^5.2.7",
+    "@sveltia/cms": "^0.170.5",
     "astro": "^5.0.0"
   }
 }

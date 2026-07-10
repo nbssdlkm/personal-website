@@ -1,0 +1,10 @@
+{
+  "projects": [
+    {
+      "name": "FicForge",
+      "tagline": "AI 辅助长篇同人写作工具。开源，从零到一独立完成。",
+      "url": "https://github.com/nbssdlkm/FicForge",
+      "featured": true
+    }
+  ]
+}

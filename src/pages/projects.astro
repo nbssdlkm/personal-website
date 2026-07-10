@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { projects } from '../data/projects';
+import { projects } from '../data/projects.json';
 
 const featured = projects.filter((p) => p.featured);
 const rest = projects.filter((p) => !p.featured);
