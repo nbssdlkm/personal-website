@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.12",
+    "@fontsource/eb-garamond": "^5.2.7",
     "astro": "^5.0.0"
   }
 }
