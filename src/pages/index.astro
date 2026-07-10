@@ -48,12 +48,16 @@ const fmt = (d: Date) => d.toISOString().slice(0, 10);
 
 <style>
   .hero {
-    margin: 3rem 0 3.5rem;
+    margin: 4.5rem 0 5rem;
   }
 
   .hero h1 {
-    font-size: 2.1rem;
-    margin: 0 0 0.75rem;
+    font-size: clamp(2.1rem, 4.5vw, 3.4rem);
+    margin: 0 0 0.9rem;
+  }
+
+  .hero .sub {
+    font-size: 1rem;
   }
 
   .cta {
@@ -68,6 +72,7 @@ const fmt = (d: Date) => d.toISOString().slice(0, 10);
 
   .featured {
     display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 0.9rem;
     margin-top: 1rem;
   }
